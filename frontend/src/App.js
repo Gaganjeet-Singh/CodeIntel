@@ -4,11 +4,9 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import ProtectedRoute from "./components/ProtectedRoute";
+import Review from './Pages/Review';
 
 
-function Dashboard() {
-  return <h1>Dashboard (Protected)</h1>;
-}
 
 function App() {
   return (
@@ -17,10 +15,10 @@ function App() {
         <Route path= "/login" element = {<Login/>} />
         <Route path = "/register" element = {<Register/>}/>
         <Route
-          path="/"
+          path="/review"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <Review />
             </ProtectedRoute>
           }
         />
