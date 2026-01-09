@@ -4,6 +4,8 @@ const generateToken = require("../utils/generateToken");
 
 exports.register = async (req, res) => {
   try {
+    console.log("BODY:", req.body); // DEBUG
+
     const { username, email, password } = req.body;
 
     if (!username || !password) {
@@ -20,17 +22,16 @@ exports.register = async (req, res) => {
     const user = await User.create({
       username,
       email,
-      password: hashedPassword
+      password: hashedPassword,
     });
 
-    res.status(201).json({
-      message: "User registered",
-      user: { id: user._id, username: user.username }
-    });
-  } catch {
+    res.status(201).json({ message: "User registered" });
+  } catch (err) {
+    console.error("REGISTER ERROR:", err);
     res.status(500).json({ message: "Server error" });
   }
 };
+
 
 exports.login = async (req, res) => {
   try {
