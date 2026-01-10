@@ -1,25 +1,36 @@
-export default function ResultPanel({result}) {
-    if(!result) return <section className = "results">No review yet</section>
-    return (
-        <section className="results">
-            <h3>Code Summary</h3>
-            <p>{result.summary}</p>
+export default function ResultPanel({ result }) {
+  return (
+    <section className="results">
+      <div className="results-header">
+        <h2>Your Results</h2>
+        <span>Reviewed just now</span>
+      </div>
 
-            <h4>Issues</h4>
+      {!result && <p className="muted">No review yet</p>}
+
+      {result && (
+        <>
+          
+
+          <div className="card danger">
+            <h4>Issues Found</h4>
             <ul>
-                {result.issues.map((i,idx) => (
-                    <li key = {idx}>{i}</li>
-                ))}
+              {result.issues.map((i, idx) => (
+                <li key={idx}>{i}</li>
+              ))}
             </ul>
+          </div>
 
+          <div className="card success">
             <h4>Recommendations</h4>
             <ul>
-                {result.suggestions.map((s,idx) => (
-                    <li key = {idx}>{s}</li>
-                ))}
+              {result.suggestions.map((s, idx) => (
+                <li key={idx}>{s}</li>
+              ))}
             </ul>
-
-            <h4>Score : {result.score}</h4>
-        </section>
-    )
-} 
+          </div>
+        </>
+      )}
+    </section>
+  );
+}

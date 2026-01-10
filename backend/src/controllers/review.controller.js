@@ -17,7 +17,7 @@ const reviews = async (req, res) => {
       user: req.userId,
       language,
       code,
-      feedback: aiReview
+      review: aiReview
     });
 
      res.status(200).json({
