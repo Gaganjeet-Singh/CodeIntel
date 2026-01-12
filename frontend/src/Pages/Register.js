@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import api from "../utils/api";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
+
 import "./review.css";
 
 function Register() {
@@ -44,7 +44,7 @@ function Register() {
 
   return (
     <>
-      <Navbar />
+      
       <ToastContainer position="top-center" />
 
       <div className="container">
@@ -90,7 +90,7 @@ function Register() {
             </div>
 
             <div className="form-control">
-              <button type="submit" className="login-btn" disabled={loading}>
+              <button type="submit" className={`login-btn ${loading ? "btn-disabled" : ""}`} disabled={loading}>
                 {loading ? "Creating account..." : "Register"}
               </button>
 

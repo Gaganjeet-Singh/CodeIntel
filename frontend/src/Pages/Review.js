@@ -6,16 +6,31 @@ import CodeMirror from "@uiw/react-codemirror";
 import { python } from "@codemirror/lang-python";
 import { javascript } from "@codemirror/lang-javascript";
 import "./review.css";
+import { useEdit } from "../context/EditorContext";
 
 export default function Review() {
   const [language, setLanguage] = useState("python");
-  const [code, setCode] = useState("");
+  const {code, setCode} = useEdit();
   const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+
 
   const analyze = async () => {
+  if (!code.trim()) return;
+
+  setLoading(true);
+  setResult(null);
+
+  try {
     const res = await api.post("/review", { code, language });
     setResult(res.data.review || res.data.Review);
-  };
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="app-shell">
@@ -46,9 +61,14 @@ export default function Review() {
               />
             </div>
 
-            <button className="analyze-btn" onClick={analyze}>
-              Analyze Code
-            </button>
+            <button 
+                className={`analyze-btn ${loading ? "analyze-loading" : ""}`}
+                onClick={analyze}
+                disabled={loading}
+              >
+                {loading ? "Analyzing..." : "Analyze Code"}
+              </button>
+
             {result && (
                 <div className="card summary under-editor">
                     <h4>Code Summary</h4>

@@ -238,17 +238,62 @@ body {
     padding: 8px;
 }
 
-.login-btn {
-    padding: 8px;
-    border:none;
-    border-radius: 8px;
-    background-color: #16a34a;
-    color: white;
-    width:100%;
-}
+
 
 .form-control:last-child {
   align-items: center;
   margin-bottom: 1.5rem;
   margin-top: 0.25rem;
 }
+
+.login-btn {
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #16a34a;
+    color: white;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+/* Force fade when disabled */
+.login-btn.btn-disabled {
+    opacity: 0.4 !important;
+    cursor: not-allowed !important;
+    background-color: #16a34a !important;
+}
+
+.analyze-btn {
+  background: #16a34a;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.analyze-btn.analyze-loading {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Shimmer effect */
+.analyze-loading::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border: 3px solid white;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 10px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
