@@ -8,6 +8,7 @@ import Review from './Pages/Review';
 import HomePage from './Pages/HomePage';
 import Profile from './Pages/Profile';
 import Navbar from './components/Navbar';
+import NotFound from "./Pages/NotFound";
 import { ToastContainer } from "react-toastify";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

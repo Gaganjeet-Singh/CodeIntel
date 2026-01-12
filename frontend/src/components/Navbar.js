@@ -16,12 +16,13 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="logo">
-        <p>CodeIntel AI</p>
+        <p><Link to = "/" style = {{textDecoration : "none", color : "white"}}>CodeIntel AI</Link></p>
       </div>
 
       <div className="nav-links">
         {user ? (
           <>
+            <Link to = '/review'>Review</Link>
             <Link to="/me">Profile</Link>
             <button className="logout-btn" onClick={logout}>
               Logout

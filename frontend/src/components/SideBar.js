@@ -1,5 +1,5 @@
 import React from "react";
-import { Bot, Plus, Folder, User, LogOut } from "lucide-react";
+import { Bot, Plus, House, User, LogOut } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useEdit } from "../context/EditorContext";
@@ -20,6 +20,10 @@ export default function Sidebar() {
     navigate('/review');
   }
 
+  const NaviHome = () => {
+    navigate('/');
+  }
+
   const ProfileClick = () => {
     navigate("/me");
   }
@@ -35,7 +39,7 @@ export default function Sidebar() {
       </button>
 
       <nav className="menu">
-        
+        <p onClick={NaviHome} style = {{cursor : "pointer"}}><House size={16}/> Home</p>
         <p onClick={ProfileClick} style = {{cursor : "pointer"}}><User size={16}/> Profile</p>
         <p onClick={handleclick} style = {{ cursor :  "pointer"}}><LogOut size={16} /> Logout</p>
       </nav>
